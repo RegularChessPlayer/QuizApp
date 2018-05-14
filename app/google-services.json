@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "678681644687",
+    "firebase_url": "https://exampleuni7thigo.firebaseio.com",
+    "project_id": "exampleuni7thigo",
+    "storage_bucket": "exampleuni7thigo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678681644687:android:fb44b32705266245",
+        "android_client_info": {
+          "package_name": "com.example.thiago.quizproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "678681644687-gc8qsj738p4id1ceic1tifhu8blpg67g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDESeKz5sXe-lotky3pUOE6-8Jq53abviI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
