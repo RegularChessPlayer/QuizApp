@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.example.thiago.quizproject.ListAdapter;
 import com.example.thiago.quizproject.R;
+import com.example.thiago.quizproject.model.Question;
 
 public class ListFragment extends Fragment implements ListAdapter.ViewHolderContract {
 
@@ -31,6 +32,11 @@ public class ListFragment extends Fragment implements ListAdapter.ViewHolderCont
 
     FragmentContract fragmentContact;
 
+    TextView textView;
+    ImageView imageView;
+    RecyclerView rcView;
+    ListAdapter listAdapter;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -41,27 +47,45 @@ public class ListFragment extends Fragment implements ListAdapter.ViewHolderCont
         }
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_first, container, false);
         //set text question
-        TextView textView = view.findViewById(R.id.textview_question);
+        textView = view.findViewById(R.id.textview_question);
         textView.setText("É um país da Europa. No Passado invadiu o Brasil, Tirou o Brasil da Copa");
         //set propertly image question
-        ImageView imageView = view.findViewById(R.id.image_question);
-        imageView.setBackgroundColor(Color.parseColor("#e74c3c"));
+        imageView = view.findViewById(R.id.image_question);
         //set items
-        RecyclerView rcView = view.findViewById(R.id.fragment_list);
-        ListAdapter listAdapter = new ListAdapter(this);
+        listAdapter = new ListAdapter(this);
+        //
+        rcView = view.findViewById(R.id.fragment_list);
         rcView.setAdapter(listAdapter);
         rcView.setLayoutManager(new LinearLayoutManager(getContext()));
         //return string from my model
-        listAdapter.addNewWord("Alemanha");
-        listAdapter.addNewWord("Japão");
-        listAdapter.addNewWord("Holanda");
-        listAdapter.addNewWord("Suécia");
+//        listAdapter.addNewWord("Alemanha");
+//        listAdapter.addNewWord("Japão");
+//        listAdapter.addNewWord("Holanda");
+//        listAdapter.addNewWord("Suécia");
         return view;
+    }
+
+    public void setQuestion(Question question){
+        textView.setText(question.getDesriptionQuestion());
+        imageView.setBackgroundColor(Color.parseColor("#e74c3c"));
+        for(int i = 0; i < question.getItems().size(); i++){
+            listAdapter.addNewWord(question.getItems().get(i).getDescriptionItem());
+        }
+
+//        listAdapter.addNewWord("Alemanha");
+//        listAdapter.addNewWord("Japão");
+//        listAdapter.addNewWord("Holanda");
+//        listAdapter.addNewWord("Suécia");
     }
 
     @Override

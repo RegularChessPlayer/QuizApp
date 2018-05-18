@@ -15,6 +15,7 @@ import java.util.List;
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyHolderVIew>{
 
     protected List<String> words = new ArrayList<>();
+
     //delegate
     private ViewHolderContract viewHolderContract;
 
