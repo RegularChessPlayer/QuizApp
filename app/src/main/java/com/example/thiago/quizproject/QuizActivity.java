@@ -1,48 +1,39 @@
 package com.example.thiago.quizproject;
 
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.MotionEvent;
+
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.thiago.quizproject.fragments.FragmentContract;
+import com.example.thiago.quizproject.fragments.ListFragment;
 
-public class QuizActivity extends AppCompatActivity implements ListAdapter.ViewHolderContract {
 
-     ListAdapter adapter;
+public class QuizActivity extends AppCompatActivity implements FragmentContract {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        RecyclerView rcView = findViewById(R.id.quiz_recycler_view);
 
-        adapter = new ListAdapter(this);
-        rcView.setAdapter(adapter);
-
-        LinearLayoutManager lnLayout = new LinearLayoutManager(this);
-        rcView.setLayoutManager(lnLayout);
-
-        adapter.addNewWord("Joao");
-        adapter.addNewWord("Thiago");
-        adapter.addNewWord("Leandro");
+        ListFragment listFragment = ListFragment.newInstance();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.first_fragment, listFragment);
+        fragmentTransaction.commit();
 
     }
 
+
     @Override
-    public View.OnClickListener onClick(View view, final int position) {
-
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(QuizActivity.this, "out of touch: " + adapter.words.get(position) , Toast.LENGTH_SHORT).show();
-            }
-        };
-
+    public void selectIndex(int position) {
+        Toast.makeText(this,"Position" + position, Toast.LENGTH_SHORT).show();
     }
 }

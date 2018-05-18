@@ -69,7 +69,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyHolderVIew>{
     }
 
     //delegate
-    interface ViewHolderContract{
+    public interface ViewHolderContract{
         View.OnClickListener onClick(View view, int position);
     }
 }
