@@ -28,7 +28,7 @@ public class Question {
     }
 
     public String getDesriptionQuestion() {
-        return getId()+ ")" + desriptionQuestion;
+        return getId()+ ") " + desriptionQuestion;
     }
 
     public void setDesriptionQuestion(String desriptionQuestion) {

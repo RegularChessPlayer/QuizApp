@@ -8,7 +8,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -32,6 +35,7 @@ public class QuizActivity extends AppCompatActivity implements FragmentContract 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+
         listFragment = ListFragment.newInstance();
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -43,7 +47,7 @@ public class QuizActivity extends AppCompatActivity implements FragmentContract 
     @Override
     protected void onResumeFragments() {
         super.onResumeFragments();
-        listFragment.setQuestion(quizGameController.getQuestions().get(0));
+        listFragment.setQuestion(quizGameController.getQuestions().get(0));//set standart question
 
         Button back = (Button) findViewById(R.id.back_question);
         back.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +68,27 @@ public class QuizActivity extends AppCompatActivity implements FragmentContract 
     }
 
     @Override
-    public void selectIndex(int position) {
-        Toast.makeText(this,"Questão  " + position, Toast.LENGTH_SHORT).show();
+    public void selectIndex(int position) { //select the index intem
+        quizGameController.markIteInQUestion(position);
+        Toast.makeText(this,"Item: " + position + "selecionado", Toast.LENGTH_SHORT).show();
     }
+
+
+//    @Override
+//    public void onCreateContextMenu(ContextMenu menu, View v, final ContextMenu.ContextMenuInfo menuInfo) {
+//        MenuItem deletar = menu.add("Finalizar");
+//        deletar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//                AdapterView.AdapterContextMenuInfo info  = (AdapterView.AdapterContextMenuInfo) menuInfo;
+//
+//                Toast.makeText(QuizActivity.this, "Finalizar o Quiz",Toast.LENGTH_SHORT ).show();
+//                return false;
+//            }
+//        });
+//
+//
+//    }
+
+
 }

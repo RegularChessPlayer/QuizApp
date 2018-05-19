@@ -1,6 +1,6 @@
 package com.example.thiago.quizproject.model;
 
-public class QuestionItem {
+public class QuestionItem  {
 
     private int id;
     private String descriptionItem;

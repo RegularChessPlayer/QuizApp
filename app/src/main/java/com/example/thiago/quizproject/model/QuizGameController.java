@@ -1,12 +1,13 @@
 package com.example.thiago.quizproject.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class QuizGameController {
 
     private ArrayList<Question> questions = new ArrayList<Question>();
 
-    private ArrayList<QuestionItem> responses = new ArrayList<QuestionItem>();
+    private HashMap<Integer, QuestionItem>responses = new HashMap<Integer, QuestionItem>();//maybe
 
     public ArrayList<Question> getQuestions() {
         return questions;
@@ -40,8 +41,13 @@ public class QuizGameController {
         }
     }
 
-    public void userResponse(QuestionItem item){
-        //logic here to add response for questions
+    public void markIteInQUestion(int positionItem){ //Enum more Reusable
+        this.persistResponse(new Integer(this.selectedQuestion), questions.get(selectedQuestion)
+                .getItems().get(positionItem));
+    }
+
+     private void persistResponse(Integer idQuestion, QuestionItem item){
+        this.responses.put(idQuestion, item);
     }
 
     public void setupDumyQuestions(){ //read from out source
