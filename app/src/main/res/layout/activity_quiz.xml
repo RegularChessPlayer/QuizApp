@@ -6,15 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".QuizActivity">
 
-
-
     <FrameLayout
         android:id="@+id/first_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
 
+    </FrameLayout>
 
-
+    <LinearLayout
+        app:layout_constraintBottom_toBottomOf="@+id/first_fragment"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|bottom"
+        android:weightSum="5"
+        >
+        <Button
+            android:id="@+id/back_question"
+            android:text="voltar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            />
+        <Button
+            android:id="@+id/next_question"
+            android:text="proxima"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            />
+    </LinearLayout>
 
 
 </android.support.constraint.ConstraintLayout>

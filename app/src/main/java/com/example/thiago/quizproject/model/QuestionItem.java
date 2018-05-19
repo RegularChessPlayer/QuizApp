@@ -6,6 +6,12 @@ public class QuestionItem {
     private String descriptionItem;
     private boolean isCorrect;
 
+    public QuestionItem(int id, String descriptionItem, boolean isCorrect) {
+        this.id = id;
+        this.descriptionItem = descriptionItem;
+        this.isCorrect = isCorrect;
+    }
+
     public int getId() {
         return id;
     }
@@ -29,4 +35,5 @@ public class QuestionItem {
     public void setCorrect(boolean correct) {
         isCorrect = correct;
     }
+
 }

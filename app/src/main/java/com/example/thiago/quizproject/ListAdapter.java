@@ -29,6 +29,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyHolderVIew>{
         notifyDataSetChanged();
     }
 
+    public void cleanList(){
+        words.clear();
+    }
+
+    //addNewImage
+
     @Override
     public ListAdapter.MyHolderVIew onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
@@ -45,12 +51,13 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyHolderVIew>{
         //get reference by view
         View view = holder.itemView;
         //pass to delegate
+
         view.setOnClickListener(
                 viewHolderContract.onClick(view, position)
         );
 
-
     }
+
 
     @Override
     public int getItemCount() {

@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import com.example.thiago.quizproject.fragments.FragmentContract;
 import com.example.thiago.quizproject.fragments.ListFragment;
 import com.example.thiago.quizproject.model.Question;
 import com.example.thiago.quizproject.model.QuestionItem;
+import com.example.thiago.quizproject.model.QuizGameController;
 
 import java.util.ArrayList;
 
@@ -24,6 +26,7 @@ public class QuizActivity extends AppCompatActivity implements FragmentContract 
 
     ListFragment listFragment;
     FragmentManager fragmentManager;
+    QuizGameController quizGameController = new QuizGameController();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,33 +37,34 @@ public class QuizActivity extends AppCompatActivity implements FragmentContract 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.first_fragment, listFragment);
         fragmentTransaction.commit();
+        quizGameController.setupDumyQuestions();
     }
 
     @Override
     protected void onResumeFragments() {
         super.onResumeFragments();
+        listFragment.setQuestion(quizGameController.getQuestions().get(0));
 
-        QuestionItem item1 = new QuestionItem();
-        item1.setId(1);
-        item1.setCorrect(true);
-        item1.setDescriptionItem("Alemanha");
+        Button back = (Button) findViewById(R.id.back_question);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listFragment.setQuestion(quizGameController.backQuestion());
+            }
+        });
 
-        QuestionItem item2 = new QuestionItem();
-        item2.setId(2);
-        item2.setCorrect(false);
-        item2.setDescriptionItem("Italia");
+        Button next = (Button) findViewById(R.id.next_question);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listFragment.setQuestion(quizGameController.nexQuestion());
+            }
+        });
 
-        ArrayList<QuestionItem> list = new ArrayList<>();
-        list.add(item1);
-        list.add(item2);
-
-        Question q1 = new Question(1, "Questão1", null, list);
-
-        listFragment.setQuestion(q1);
     }
 
     @Override
     public void selectIndex(int position) {
-        Toast.makeText(this,"Position" + position, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Questão  " + position, Toast.LENGTH_SHORT).show();
     }
 }

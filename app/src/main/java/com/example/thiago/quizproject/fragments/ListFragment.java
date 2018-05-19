@@ -58,7 +58,6 @@ public class ListFragment extends Fragment implements ListAdapter.ViewHolderCont
         View view = inflater.inflate(R.layout.fragment_first, container, false);
         //set text question
         textView = view.findViewById(R.id.textview_question);
-        textView.setText("É um país da Europa. No Passado invadiu o Brasil, Tirou o Brasil da Copa");
         //set propertly image question
         imageView = view.findViewById(R.id.image_question);
         //set items
@@ -68,24 +67,17 @@ public class ListFragment extends Fragment implements ListAdapter.ViewHolderCont
         rcView.setAdapter(listAdapter);
         rcView.setLayoutManager(new LinearLayoutManager(getContext()));
         //return string from my model
-//        listAdapter.addNewWord("Alemanha");
-//        listAdapter.addNewWord("Japão");
-//        listAdapter.addNewWord("Holanda");
-//        listAdapter.addNewWord("Suécia");
         return view;
     }
 
     public void setQuestion(Question question){
+        listAdapter.cleanList();
         textView.setText(question.getDesriptionQuestion());
         imageView.setBackgroundColor(Color.parseColor("#e74c3c"));
         for(int i = 0; i < question.getItems().size(); i++){
             listAdapter.addNewWord(question.getItems().get(i).getDescriptionItem());
+            //put the item icon
         }
-
-//        listAdapter.addNewWord("Alemanha");
-//        listAdapter.addNewWord("Japão");
-//        listAdapter.addNewWord("Holanda");
-//        listAdapter.addNewWord("Suécia");
     }
 
     @Override

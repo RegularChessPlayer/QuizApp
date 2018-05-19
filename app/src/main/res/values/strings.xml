@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">QuizProject</string>
+    <string name="navigation_back"><![CDATA[<--]]></string>
+    <string name="navigation_foward"><![CDATA[-->]]></string>
 </resources>
