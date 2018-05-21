@@ -1,14 +1,18 @@
 package com.example.thiago.quizproject;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
+import android.util.AttributeSet;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -39,6 +43,11 @@ public class QuizActivity extends AppCompatActivity implements FragmentContract 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String lastScore = sharedPref.getString("last_score", "0");
+        Toast.makeText(this, "Último score " + lastScore +"%", Toast.LENGTH_SHORT).show();
+
         listFragment = ListFragment.newInstance();
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -46,6 +55,7 @@ public class QuizActivity extends AppCompatActivity implements FragmentContract 
         fragmentTransaction.commit();
         quizGameController.setupDumyQuestions();
     }
+
 
     @Override
     protected void onResumeFragments() {

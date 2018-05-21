@@ -58,10 +58,13 @@ public class QuizGameController implements Serializable {
                 correctAnsers += 1;
             }
         }
-        Double percentCorect = new Double(correctAnsers / questions.size());
+        Double percentCorect = ((double)correctAnsers / (double) questions.size()) * 100;
         return percentCorect;
     }
 
+    public void resetGame(){
+        this.responses.clear();
+    }
 
     public void setupDumyQuestions(){ //read from out source
         //load question
