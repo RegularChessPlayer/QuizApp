@@ -43,7 +43,6 @@ public class QuizActivity extends AppCompatActivity implements FragmentContract 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String lastScore = sharedPref.getString("last_score", "0");
         Toast.makeText(this, "Último score " + lastScore +"%", Toast.LENGTH_SHORT).show();

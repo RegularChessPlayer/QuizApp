@@ -77,30 +77,23 @@ public class QuizGameController implements Serializable {
         list.add(item3);
         QuestionItem item4 = new QuestionItem(4, "Holanda", true);
         list.add(item4);
-        Question q1 = new Question(1, "É um país da Europa. No Passado invadiu o Brasil, Tirou o Brasil da Copa. É a terra das flores\"", null, list);
+
+        Question q1 = new Question(1, "É um país da Europa.", null, list);
         this.questions.add(q1);
 
 
-        item4.setCorrect(false);
-        item2.setDescriptionItem("Portugal");
-        item2.setCorrect(true);
-
-        Question q2 = new Question(2, " Quem colonizou o Brasil ?.", null, list);
+        Question q2 = new Question(2, " No Passado invadiu o Brasil ?", null, list);
         this.questions.add(q2);
 
-        item2.setCorrect(false);
-        item3.setDescriptionItem("Australia");
-        item3.setCorrect(true);
 
-        Question q3 = new Question(3, "Kangorros são nativos de qual país ?.", null, list);
+        Question q3 = new Question(3, "Tirou o Brasil da Copa.", null, list);
         this.questions.add(q3);
 
-        Question q4 = new Question(4, "Peter Singer famoso filósofo de qual país ?.", null, list);
+        Question q4 = new Question(4, "É a terra das flores.", null, list);
         this.questions.add(q4);
 
-        item3.setCorrect(false);
-        item1.setCorrect(true);
-        Question q5 = new Question(5, "Berlim é capital de qual país ?", null, list);
+
+        Question q5 = new Question(5, "Amsterdã é capital de qual país ?", null, list);
         this.questions.add(q5);
 
     }
