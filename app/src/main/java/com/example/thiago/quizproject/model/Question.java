@@ -2,10 +2,11 @@ package com.example.thiago.quizproject.model;
 
 import android.util.ArraySet;
 
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class Question {
+public class Question implements Serializable{
 
     private int id;
     private String desriptionQuestion;

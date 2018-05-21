@@ -1,6 +1,7 @@
 package com.example.thiago.quizproject;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -69,26 +72,27 @@ public class QuizActivity extends AppCompatActivity implements FragmentContract 
 
     @Override
     public void selectIndex(int position) { //select the index intem
+        //#3498db selected item position
         quizGameController.markIteInQUestion(position);
         Toast.makeText(this,"Item: " + position + "selecionado", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.finalize_quiz_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
-//    @Override
-//    public void onCreateContextMenu(ContextMenu menu, View v, final ContextMenu.ContextMenuInfo menuInfo) {
-//        MenuItem deletar = menu.add("Finalizar");
-//        deletar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-//            @Override
-//            public boolean onMenuItemClick(MenuItem item) {
-//                AdapterView.AdapterContextMenuInfo info  = (AdapterView.AdapterContextMenuInfo) menuInfo;
-//
-//                Toast.makeText(QuizActivity.this, "Finalizar o Quiz",Toast.LENGTH_SHORT ).show();
-//                return false;
-//            }
-//        });
-//
-//
-//    }
-
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.finalize_menu){
+            //pass the quizGameControlelr
+            Intent itenSegueFinalizeActivity = new Intent(QuizActivity.this, FinalizeActivity.class);
+            itenSegueFinalizeActivity.putExtra("quizFinalize", quizGameController);
+            startActivity(itenSegueFinalizeActivity);
+            Toast.makeText(QuizActivity.this, "Finalize o Quiz",  Toast.LENGTH_SHORT).show();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

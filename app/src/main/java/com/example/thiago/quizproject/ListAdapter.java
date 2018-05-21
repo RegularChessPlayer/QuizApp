@@ -1,6 +1,7 @@
 package com.example.thiago.quizproject;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyHolderVIew>{
 
     //delegate
     private ViewHolderContract viewHolderContract;
+    //position global selected
 
     //initializing delegate
     public ListAdapter(ViewHolderContract viewHolderContract){
@@ -43,21 +45,19 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyHolderVIew>{
     }
 
     @Override
-    public void onBindViewHolder(ListAdapter.MyHolderVIew holder, int position) {
+    public void onBindViewHolder(ListAdapter.MyHolderVIew holder, final int position) {
         //get model
         String word = words.get(position);
         //fill cell
         holder.text_item.setText(word);
         //get reference by view
-        View view = holder.itemView;
+        final View view = holder.itemView;
         //pass to delegate
-
         view.setOnClickListener(
                 viewHolderContract.onClick(view, position)
         );
 
     }
-
 
     @Override
     public int getItemCount() {

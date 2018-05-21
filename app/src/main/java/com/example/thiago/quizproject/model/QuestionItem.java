@@ -1,6 +1,8 @@
 package com.example.thiago.quizproject.model;
 
-public class QuestionItem  {
+import java.io.Serializable;
+
+public class QuestionItem implements Serializable {
 
     private int id;
     private String descriptionItem;

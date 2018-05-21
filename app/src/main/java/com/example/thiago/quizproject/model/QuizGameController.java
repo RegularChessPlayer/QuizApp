@@ -1,9 +1,10 @@
 package com.example.thiago.quizproject.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class QuizGameController {
+public class QuizGameController implements Serializable {
 
     private ArrayList<Question> questions = new ArrayList<Question>();
 
@@ -50,6 +51,18 @@ public class QuizGameController {
         this.responses.put(idQuestion, item);
     }
 
+    public Double returnPercentCorrectAnswers(){
+        int correctAnsers = 0;
+        for (QuestionItem item  : responses.values()){
+            if(item.isCorrect()){
+                correctAnsers += 1;
+            }
+        }
+        Double percentCorect = new Double(correctAnsers / questions.size());
+        return percentCorect;
+    }
+
+
     public void setupDumyQuestions(){ //read from out source
         //load question
         ArrayList<QuestionItem> list = new ArrayList<>();
@@ -88,6 +101,5 @@ public class QuizGameController {
         this.questions.add(q5);
 
     }
-
 
 }
